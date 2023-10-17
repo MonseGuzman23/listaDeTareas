@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Lista de tareas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: silver;
+    }
+
+    #taskContainer {
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: lightseagreen;
+    }
+
+    #newTask {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="taskContainer">
+    <h2>Lista de tareas:</h2>
+    <ul id="taskList"></ul>
+    <input type="text" id="newTask" placeholder="Agrega una nueva tarea">
+    <button onclick="addTask()">Agregar tarea</button>
+  </div>
+
+  <script>
+    var tasks = ["barrer la cocina", "tender la cama",];
+
+    function updateList() {
+      var list = document.getElementById("taskList");
+      list.innerHTML = "";
+
+      tasks.forEach(function (task) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(task));
+        list.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      var newTask = document.getElementById("newTask").value;
+      if (newTask !== '') {
+        tasks.push(newTask);
+        updateList();
+        document.getElementById("newTask").value = '';
+      }
+
+      console.log(tasks);
+
+    }
+
+    window.onload = function () {
+      updateList();
+    };
+  </script>
+</body>
+
+</html>
